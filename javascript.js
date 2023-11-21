@@ -99,7 +99,7 @@ ScrollReveal().reveal('.ico',{
 ScrollReveal().reveal('.scard',{
 	interval: 16,
 	reset: true,
-    delay: 500
+    delay: 300
 });
 
 
