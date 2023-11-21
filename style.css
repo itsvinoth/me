@@ -530,6 +530,7 @@ h3 {
     background-image: url(./image/images/b-image3.jpg);
     background-size: cover;
     background-position: center;   
+    border-radius: 20px;
 }
 
 
