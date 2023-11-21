@@ -1,138 +1,56 @@
-// console.log(document.getElementById('NameFormInput').value);
-// console.log(document);
-// alert(document.getElementById('NameFormInput').value)
-
-//scrollreveal--------------------------------------------------------------------------->
-// ScrollReveal().reveal('.bot1', { delay: 200 });
-// ScrollReveal().reveal('.bot2', { delay: 200 });
-// ScrollReveal().reveal('.bot3', { delay: 200 });
-
-ScrollReveal().reveal('.bot1',{
-	interval: 16,
-	reset: true,
+// ScrollReveal Configuration
+const scrollRevealConfig = {
+    interval: 16,
+    reset: true,
     delay: 300
-});
-ScrollReveal().reveal('.hello',{
-	interval: 16,
-	reset: true,
-    delay: 400
-});ScrollReveal().reveal('.im',{
-	interval: 16,
-	reset: true,
-    delay: 400
-});
-ScrollReveal().reveal('.name',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.pimage',{
-	interval: 16,
-	reset: true,
-    delay: 600
-});
-ScrollReveal().reveal('.button',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.titleani',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.carousel',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.aboutme',{
-	interval: 16,
-	reset: true,
-    delay: 300
-});
-ScrollReveal().reveal('.cpimage',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.abouttxt',{
-	interval: 16,
-	reset: true,
-    delay: 600
-});
-ScrollReveal().reveal('.col',{
-	interval: 16,
-	reset: true,
-    delay: 800
-});
-ScrollReveal().reveal('.map',{
-	interval: 16,
-	reset: true,
-    delay: 700
-});
-ScrollReveal().reveal('.tcontact',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.card',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.mb-3',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.send',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.ico',{
-	interval: 16,
-	reset: true,
-    delay: 500
-});
-ScrollReveal().reveal('.scard',{
-	interval: 16,
-	reset: true,
-    delay: 300
-});
+};
 
+ScrollReveal().reveal('.bot1', scrollRevealConfig);
+ScrollReveal().reveal('.hello', scrollRevealConfig);
+ScrollReveal().reveal('.im', scrollRevealConfig);
+ScrollReveal().reveal('.name', scrollRevealConfig);
+ScrollReveal().reveal('.pimage', scrollRevealConfig);
+ScrollReveal().reveal('.button', scrollRevealConfig);
+ScrollReveal().reveal('.titleani', scrollRevealConfig);
+ScrollReveal().reveal('.carousel', scrollRevealConfig);
+ScrollReveal().reveal('.aboutme', scrollRevealConfig);
+ScrollReveal().reveal('.cpimage', scrollRevealConfig);
+ScrollReveal().reveal('.abouttxt', scrollRevealConfig);
+ScrollReveal().reveal('.col', scrollRevealConfig);
+ScrollReveal().reveal('.map', scrollRevealConfig);
+ScrollReveal().reveal('.tcontact', scrollRevealConfig);
+ScrollReveal().reveal('.card', scrollRevealConfig);
+ScrollReveal().reveal('.mb-3', scrollRevealConfig);
+ScrollReveal().reveal('.send', scrollRevealConfig);
+ScrollReveal().reveal('.ico', scrollRevealConfig);
+ScrollReveal().reveal('.scard', scrollRevealConfig);
 
-
-
-
-window.addEventListener('scroll',reveal);
+// Scroll Reveal on Scroll
+window.addEventListener('scroll', reveal);
 
 function reveal() {
-    var reveals = document.querySelectorAll('.reveal');
-    for (var i = 0;i< reveals.length; i++){
-        var windowheight = window.innerHeight;
-        var revealtop = reveals[i].getBoundingClientRect().top;
-        var revealpoint = 150;
+    const reveals = document.querySelectorAll('.reveal');
+    for (const element of reveals) {
+        const windowheight = window.innerHeight;
+        const revealtop = element.getBoundingClientRect().top;
+        const revealpoint = 150;
 
-        if(revealtop < windowheight - revealpoint){
-            reveals[i].classList.add('active');
-        }
-        else{
-            reveals[i].classList.add('active');
+        if (revealtop < windowheight - revealpoint) {
+            element.classList.add('active');
+        } else {
+            element.classList.add('active');
         }
     }
 }
 
-//title animation (vinoth)----------------------------------------------------------------->
-
+// Title Animation (Vinoth)
 const dynamicText = document.querySelector("h1 span");
 const words = ["Web Developer", "App Developer", "Designer", "Java Programmer"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 
-const typeEffect = () => {
+function typeEffect() {
     const currentWord = words[wordIndex];
     const currentChar = currentWord.substring(0, charIndex);
     dynamicText.textContent = currentChar;
@@ -154,133 +72,110 @@ const typeEffect = () => {
 
 typeEffect();
 
-//carousel---------------------------------------------------------------------------------->
-
+// Carousel
 let onSlide = false;
 
 window.addEventListener("load", () => {
-   autoSlide();
+    autoSlide();
 
-   const dots = document.querySelectorAll(".carousel_dot");
-   for (let i = 0; i < dots.length; i++) {
-      dots[i].addEventListener("click", () => slide(i));
-   }
+    const dots = document.querySelectorAll(".carousel_dot");
+    dots.forEach((dot, index) => dot.addEventListener("click", () => slide(index)));
 
-   const buttonPrev = document.querySelector(".carousel_button__prev");
-   const buttonNext = document.querySelector(".carousel_button__next");
-   buttonPrev.addEventListener("click", () => slide(getItemActiveIndex() - 1));
-   buttonNext.addEventListener("click", () => slide(getItemActiveIndex() + 1));
-})
+    const buttonPrev = document.querySelector(".carousel_button__prev");
+    const buttonNext = document.querySelector(".carousel_button__next");
+    buttonPrev.addEventListener("click", () => slide(getItemActiveIndex() - 1));
+    buttonNext.addEventListener("click", () => slide(getItemActiveIndex() + 1));
+});
 
 function autoSlide() {
-   setInterval(() => {
-      slide(getItemActiveIndex() + 1);
-   }, 3000);
+    setInterval(() => {
+        slide(getItemActiveIndex() + 1);
+    }, 3000);
 }
 
 function slide(toIndex) {
-   if (onSlide)
-      return;
-   onSlide = true;
+    if (onSlide) return;
+    onSlide = true;
 
-   const itemsArray = Array.from(document.querySelectorAll(".carousel_item"));
-   const itemActive = document.querySelector(".carousel_item__active");
-   const itemActiveIndex = itemsArray.indexOf(itemActive);
-   let newItemActive = null;
+    const itemsArray = Array.from(document.querySelectorAll(".carousel_item"));
+    const itemActive = document.querySelector(".carousel_item__active");
+    const itemActiveIndex = itemsArray.indexOf(itemActive);
+    let newItemActive = null;
 
-   if (toIndex > itemActiveIndex) {
-      if (toIndex >= itemsArray.length) {
-         toIndex = 0;
-      }
+    if (toIndex > itemActiveIndex) {
+        if (toIndex >= itemsArray.length) {
+            toIndex = 0;
+        }
 
-      newItemActive = itemsArray[toIndex];
+        newItemActive = itemsArray[toIndex];
+        newItemActive.classList.add("carousel_item__pos_next");
+        setTimeout(() => {
+            newItemActive.classList.add("carousel_item__next");
+            itemActive.classList.add("carousel_item__next");
+        }, 20);
+    } else {
+        if (toIndex < 0) {
+            toIndex = itemsArray.length - 1;
+        }
 
-      newItemActive.classList.add("carousel_item__pos_next");
-      setTimeout(() => {
-         newItemActive.classList.add("carousel_item__next");
-         itemActive.classList.add("carousel_item__next");
-      }, 20);
-   } else {
-      if (toIndex < 0) {
-         toIndex = itemsArray.length - 1;
-      }
+        newItemActive = itemsArray[toIndex];
+        newItemActive.classList.add("carousel_item__pos_prev");
+        setTimeout(() => {
+            newItemActive.classList.add("carousel_item__prev");
+            itemActive.classList.add("carousel_item__prev");
+        }, 20);
+    }
 
-      newItemActive = itemsArray[toIndex];
-      newItemActive.classList.add("carousel_item__pos_prev");
-      setTimeout(() => {
-         newItemActive.classList.add("carousel_item__prev");
-         itemActive.classList.add("carousel_item__prev");
-      }, 20);
-   }
-   newItemActive.addEventListener("transitionend", () => {
-      itemActive.className = "carousel_item";
-      newItemActive.className = "carousel_item carousel_item__active";
-      onSlide = false;
-   }, {
-      once: true
-   });
+    newItemActive.addEventListener("transitionend", () => {
+        itemActive.className = "carousel_item";
+        newItemActive.className = "carousel_item carousel_item__active";
+        onSlide = false;
+    }, {
+        once: true
+    });
 
-   slideIndicator(toIndex);
+    slideIndicator(toIndex);
 }
 
 function getItemActiveIndex() {
-   const itemsArray = Array.from(document.querySelectorAll(".carousel_item"));
-   const itemActive = document.querySelector(".carousel_item__active");
-   const itemActiveIndex = itemsArray.indexOf(itemActive);
-   return itemActiveIndex;
+    const itemsArray = Array.from(document.querySelectorAll(".carousel_item"));
+    const itemActive = document.querySelector(".carousel_item__active");
+    const itemActiveIndex = itemsArray.indexOf(itemActive);
+    return itemActiveIndex;
 }
 
 function slideIndicator(toIndex) {
-   const dots = document.querySelectorAll(".carousel_dot");
-   const dotActive = document.querySelector(".carousel_dot__active");
-   const newDotActive = dots[toIndex];
+    const dots = document.querySelectorAll(".carousel_dot");
+    const dotActive = document.querySelector(".carousel_dot__active");
+    const newDotActive = dots[toIndex];
 
-   dotActive.classList.remove("carousel_dot__active");
-   newDotActive.classList.add("carousel_dot__active");
+    dotActive.classList.remove("carousel_dot__active");
+    newDotActive.classList.add("carousel_dot__active");
 }
 
+// Input Validation
+document.getElementById('sendmsg').addEventListener('click', validateInput);
 
-//input validation------------------------------------------------------------------------->
+function validateInput() {
+    validateField('NameFormInput', 'NameWarning', 'Enter Name');
+    validateField('MailFormInput', 'MailWarning', 'Enter Mail');
 
-document.getElementById('sendmsg').addEventListener('click',()=>{
-    const Name = document.getElementById('NameFormInput').value
-    const Namelength = Name.length;
-    const NameUpper = Name.toUpperCase();
-    if (Namelength==0) {
-        document.getElementById('NameWarning').textContent=' Enter Name ';
+    const name = document.getElementById('NameFormInput').value;
+    const mail = document.getElementById('MailFormInput').value;
+
+    if (name.length > 0 && mail.length > 0) {
+        alert(`From VINOTH: Thank you ${name.toUpperCase()}! I'll contact you later!`);
     }
-    else{
-        document.getElementById('NameWarning').textContent=' ';
-    }
-})
+}
 
-document.getElementById('sendmsg').addEventListener('click',()=>{
-    const Mail = document.getElementById('MailFormInput').value
-    const Maillength = Mail.length;
-    if (Maillength==0) {
-        document.getElementById('MailWarning').textContent=' Enter Mail ';
-    }
-    else{
-        document.getElementById('MailWarning').textContent=' ';
-    }
-})
+function validateField(inputId, warningId, message) {
+    const field = document.getElementById(inputId);
+    const fieldLength = field.value.length;
+    const warning = document.getElementById(warningId);
 
-document.getElementById('sendmsg').addEventListener('click',()=>{
-    const Name = document.getElementById('NameFormInput').value
-    const Namelength = Name.length;
-    const NameUpper = Name.toUpperCase();
-    const Mail = document.getElementById('MailFormInput').value
-    const Maillength = Mail.length;
+    warning.textContent = fieldLength === 0 ? message : '';
+}
 
-    if(Namelength>0 && Maillength>0){
-        alert('From VINOTH : Thank you '+ NameUpper +' ! ' + " I'll contact you later !")
-    }
-})
-
-//preloader-------------------------------------------------------------------------------------->
-
-const load = document.getElementById('preloader')
-window.addEventListener('load',()=>{
-    load.style.display='none';
-})
-
+// Preloader
+const preloader = document.getElementById('preloader');
+window.addEventListener('load', () => preloader.style.display = 'none');
