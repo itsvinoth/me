@@ -527,14 +527,9 @@ h3 {
 
 
 #do{
-    transition: 500ms;
-    backdrop-filter: blur(15px);
     background-image: url(./image/images/b-image3.jpg);
     background-size: cover;
-    background-position: center;
-    background-clip: border-box;
-    border-radius: 20px;
-    
+    background-position: center;   
 }
 
 
