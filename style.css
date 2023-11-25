@@ -554,7 +554,7 @@ justify-content: center;
 }
 
 .btn-success {
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: center;
     color: #03df97;
