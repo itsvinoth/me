@@ -24,21 +24,22 @@ html{
 }
 
 
+
 body{
-    height: 100%;
-    width: 100%;
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
     z-index: 1500;
-    background-image: url(../profile/image/images/b-image2.jpg);
+    background-image: url(./image/images/b-image2.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: round;
+
     font-family: Arial, sans-serif;
+    
+    height: 100%;
     align-items: center;
 }
-
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 h1 {
