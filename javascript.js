@@ -4,7 +4,6 @@ const scrollRevealConfig = {
     reset: true,
     delay: 300
 };
-
 ScrollReveal().reveal('.bot1', scrollRevealConfig);
 ScrollReveal().reveal('.hello', scrollRevealConfig);
 ScrollReveal().reveal('.im', scrollRevealConfig);
