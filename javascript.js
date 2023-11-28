@@ -1,29 +1,6 @@
 // ScrollReveal Configuration
-const scrollRevealConfig = {
-    interval: 16,
-    reset: true,
-    delay: 300
-};
 
-ScrollReveal().reveal('.bot1', scrollRevealConfig);
-ScrollReveal().reveal('.hello', scrollRevealConfig);
-ScrollReveal().reveal('.im', scrollRevealConfig);
-ScrollReveal().reveal('.name', scrollRevealConfig);
-ScrollReveal().reveal('.pimage', scrollRevealConfig);
-ScrollReveal().reveal('.button', scrollRevealConfig);
-ScrollReveal().reveal('.titleani', scrollRevealConfig);
-ScrollReveal().reveal('.carousel', scrollRevealConfig);
-ScrollReveal().reveal('.aboutme', scrollRevealConfig);
-ScrollReveal().reveal('.cpimage', scrollRevealConfig);
-ScrollReveal().reveal('.abouttxt', scrollRevealConfig);
-ScrollReveal().reveal('.col', scrollRevealConfig);
-ScrollReveal().reveal('.map', scrollRevealConfig);
-ScrollReveal().reveal('.tcontact', scrollRevealConfig);
-ScrollReveal().reveal('.card', scrollRevealConfig);
-ScrollReveal().reveal('.mb-3', scrollRevealConfig);
-ScrollReveal().reveal('.send', scrollRevealConfig);
-ScrollReveal().reveal('.ico', scrollRevealConfig);
-ScrollReveal().reveal('.scard', scrollRevealConfig);
+AOS.init();
 
 // Scroll Reveal on Scroll
 window.addEventListener('scroll', reveal);
@@ -72,85 +49,66 @@ function typeEffect() {
 
 typeEffect();
 
-// Carousel
-let onSlide = false;
+// Carousel 
 
-window.addEventListener("load", () => {
-    autoSlide();
 
-    const dots = document.querySelectorAll(".carousel_dot");
-    dots.forEach((dot, index) => dot.addEventListener("click", () => slide(index)));
 
-    const buttonPrev = document.querySelector(".carousel_button__prev");
-    const buttonNext = document.querySelector(".carousel_button__next");
-    buttonPrev.addEventListener("click", () => slide(getItemActiveIndex() - 1));
-    buttonNext.addEventListener("click", () => slide(getItemActiveIndex() + 1));
-});
 
-function autoSlide() {
-    setInterval(() => {
-        slide(getItemActiveIndex() + 1);
-    }, 3000);
-}
 
-function slide(toIndex) {
-    if (onSlide) return;
-    onSlide = true;
 
-    const itemsArray = Array.from(document.querySelectorAll(".carousel_item"));
-    const itemActive = document.querySelector(".carousel_item__active");
-    const itemActiveIndex = itemsArray.indexOf(itemActive);
-    let newItemActive = null;
 
-    if (toIndex > itemActiveIndex) {
-        if (toIndex >= itemsArray.length) {
-            toIndex = 0;
+
+
+
+
+
+let currentSlide = 0;
+
+    function showSlide(index) {
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        if (index >= slides.length) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide = index;
         }
-
-        newItemActive = itemsArray[toIndex];
-        newItemActive.classList.add("carousel_item__pos_next");
-        setTimeout(() => {
-            newItemActive.classList.add("carousel_item__next");
-            itemActive.classList.add("carousel_item__next");
-        }, 20);
-    } else {
-        if (toIndex < 0) {
-            toIndex = itemsArray.length - 1;
-        }
-
-        newItemActive = itemsArray[toIndex];
-        newItemActive.classList.add("carousel_item__pos_prev");
-        setTimeout(() => {
-            newItemActive.classList.add("carousel_item__prev");
-            itemActive.classList.add("carousel_item__prev");
-        }, 20);
+        const translateValue = -currentSlide * 100 + '%';
+        slider.style.transform = `translateX(${translateValue})`;
     }
 
-    newItemActive.addEventListener("transitionend", () => {
-        itemActive.className = "carousel_item";
-        newItemActive.className = "carousel_item carousel_item__active";
-        onSlide = false;
-    }, {
-        once: true
-    });
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
 
-    slideIndicator(toIndex);
-}
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
 
-function getItemActiveIndex() {
-    const itemsArray = Array.from(document.querySelectorAll(".carousel_item"));
-    const itemActive = document.querySelector(".carousel_item__active");
-    const itemActiveIndex = itemsArray.indexOf(itemActive);
-    return itemActiveIndex;
-}
+    setInterval(nextSlide, 3000); // Auto slide every 3 seconds
 
-function slideIndicator(toIndex) {
-    const dots = document.querySelectorAll(".carousel_dot");
-    const dotActive = document.querySelector(".carousel_dot__active");
-    const newDotActive = dots[toIndex];
 
-    dotActive.classList.remove("carousel_dot__active");
-    newDotActive.classList.add("carousel_dot__active");
+
+
+
+
+
+
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 3000); 
 }
 
 // Input Validation
