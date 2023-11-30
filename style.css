@@ -202,9 +202,7 @@ h3 {
 /*first page over */
 #about{
     transition: 500ms;
-    background-image: url(./image/images/b-image3.jpg);
-    background-size: cover;
-    background-position: center;
+    background-color:#18191d;
     margin: 0px;
     display:flex;
     border-radius: 20px;
@@ -283,9 +281,7 @@ h3 {
     flex-direction: column;
     align-items: center;
     transition: 500ms;
-    background-image: url(./image/images/b-image4.jpg);
-    background-position: center;
-    background-size: cover;
+    background-color: #18191d;
 }
 
 .favorite {
@@ -409,7 +405,7 @@ h3 {
 }
 
 #do{
-    background-image: url(./image/images/b-image3.jpg);
+    background-color: #18191d;/*--------------------------------->*/
     background-size: cover;
     background-position: center;
     border-radius: 25px;
@@ -440,7 +436,7 @@ justify-content: center;
     display: flex;
     justify-content: center;
     color: #03df97;
-    background-color: black;
+    background-color: transparent;
     border-color: #03df97;
     border-radius: 25px;
 }
@@ -575,6 +571,5 @@ h5{
 p{
     color: rgb(212, 212, 212);
 }
-
 
 
