@@ -2,23 +2,6 @@
 
 AOS.init();
 
-// Scroll Reveal on Scroll
-window.addEventListener('scroll', reveal);
-
-function reveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    for (const element of reveals) {
-        const windowheight = window.innerHeight;
-        const revealtop = element.getBoundingClientRect().top;
-        const revealpoint = 150;
-
-        if (revealtop < windowheight - revealpoint) {
-            element.classList.add('active');
-        } else {
-            element.classList.add('active');
-        }
-    }
-}
 
 // Title Animation (Vinoth)
 const dynamicText = document.querySelector("h1 span");
@@ -50,18 +33,6 @@ function typeEffect() {
 typeEffect();
 
 // Carousel 
-
-
-
-
-
-
-
-
-
-
-
-
 let currentSlide = 0;
 
     function showSlide(index) {
@@ -86,30 +57,7 @@ let currentSlide = 0;
         showSlide(currentSlide - 1);
     }
 
-    setInterval(nextSlide, 3000); // Auto slide every 3 seconds
-
-
-
-
-
-
-
-
-
-let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 3000); 
-}
+    setInterval(nextSlide, 3000); 
 
 // Input Validation
 document.getElementById('sendmsg').addEventListener('click', validateInput);
@@ -135,5 +83,8 @@ function validateField(inputId, warningId, message) {
 }
 
 // Preloader
-const preloader = document.getElementById('preloader');
-window.addEventListener('load', () => preloader.style.display = 'none');
+const loader = document.getElementById('preloader');
+window.addEventListener('load', function(){ 
+    loader.style.display = 'none';
+})
+
